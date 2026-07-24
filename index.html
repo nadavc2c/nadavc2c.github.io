@@ -1,1020 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nadav Cohen — Cybersecurity Professional</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg: #0a0a0f;
-            --bg-card: #0f0f18;
-            --bg-card-hover: #141420;
-            --accent: #3dd8c5;
-            --accent-dim: #1a8a7e;
-            --accent-glow: rgba(61, 216, 197, 0.08);
-            --text: #e8e8ed;
-            --text-dim: #8888a0;
-            --text-muted: #55556a;
-            --border: #1e1e30;
-            --serif: 'Cormorant Garamond', Georgia, serif;
-            --sans: 'DM Sans', -apple-system, sans-serif;
-            --mono: 'JetBrains Mono', monospace;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: var(--sans);
-            font-weight: 300;
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        /* Noise overlay */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        /* Ambient glow */
-        .ambient {
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(61, 216, 197, 0.04) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-            top: -200px;
-            right: -200px;
-            animation: drift 20s ease-in-out infinite;
-        }
-
-        .ambient-2 {
-            top: auto;
-            right: auto;
-            bottom: -300px;
-            left: -200px;
-            animation: drift2 25s ease-in-out infinite;
-            background: radial-gradient(circle, rgba(61, 216, 197, 0.03) 0%, transparent 70%);
-        }
-
-        @keyframes drift {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(-80px, 80px); }
-        }
-        @keyframes drift2 {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(60px, -60px); }
-        }
-
-        /* Layout */
-        .container {
-            max-width: 820px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Fade-in animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ─── HERO ─── */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 4rem 0;
-        }
-
-        .hero__label {
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            font-weight: 300;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fadeSlideUp 1s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .hero__name {
-            font-family: var(--serif);
-            font-size: clamp(3rem, 8vw, 5.5rem);
-            font-weight: 300;
-            line-height: 1.05;
-            letter-spacing: -0.02em;
-            color: var(--text);
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fadeSlideUp 1s 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .hero__name span {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--accent), #7ee8d8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero__tagline {
-            font-size: 1.1rem;
-            font-weight: 300;
-            color: var(--text-dim);
-            max-width: 520px;
-            line-height: 1.8;
-            opacity: 0;
-            animation: fadeSlideUp 1s 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .hero__contact {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2.5rem;
-            flex-wrap: wrap;
-            opacity: 0;
-            animation: fadeSlideUp 1s 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .hero__contact a {
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            font-weight: 300;
-            color: var(--text-muted);
-            text-decoration: none;
-            letter-spacing: 0.05em;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid transparent;
-            transition: color 0.3s, border-color 0.3s;
-        }
-
-        .hero__contact a:hover {
-            color: var(--accent);
-            border-bottom-color: var(--accent-dim);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            animation: fadeIn 1s 1.5s forwards, float 3s 2s ease-in-out infinite;
-        }
-
-        .scroll-indicator svg {
-            width: 20px;
-            height: 20px;
-            stroke: var(--text-muted);
-            stroke-width: 1.5;
-            fill: none;
-        }
-
-        @keyframes fadeSlideUp {
-            from { opacity: 0; transform: translateY(25px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            to { opacity: 0.4; }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(8px); }
-        }
-
-        /* ─── SECTIONS ─── */
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-label {
-            font-family: var(--mono);
-            font-size: 0.68rem;
-            font-weight: 300;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--accent-dim);
-            margin-bottom: 0.5rem;
-        }
-
-        .section-title {
-            font-family: var(--serif);
-            font-size: 2.2rem;
-            font-weight: 300;
-            color: var(--text);
-            margin-bottom: 3rem;
-            letter-spacing: -0.01em;
-        }
-
-        /* Divider */
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border), transparent);
-            margin: 0;
-        }
-
-        /* ─── EXPERIENCE CARDS ─── */
-        .exp-card {
-            padding: 2rem 0;
-            border-bottom: 1px solid var(--border);
-            transition: background 0.4s;
-        }
-        .exp-card:last-child { border-bottom: none; }
-
-        .exp-card__header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 0.3rem;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .exp-card__role {
-            font-family: var(--sans);
-            font-size: 1.05rem;
-            font-weight: 500;
-            color: var(--text);
-        }
-
-        .exp-card__dates {
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            font-weight: 300;
-            color: var(--text-muted);
-            letter-spacing: 0.05em;
-        }
-
-        .exp-card__company {
-            font-family: var(--serif);
-            font-size: 1rem;
-            font-weight: 300;
-            font-style: italic;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        .exp-card__bullets {
-            list-style: none;
-            padding: 0;
-        }
-
-        .exp-card__bullets li {
-            position: relative;
-            padding-left: 1.2rem;
-            margin-bottom: 0.6rem;
-            font-size: 0.9rem;
-            font-weight: 300;
-            color: var(--text-dim);
-            line-height: 1.7;
-        }
-
-        .exp-card__bullets li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.65em;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background: var(--accent-dim);
-        }
-
-        /* ─── SKILLS ─── */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-block {
-            padding: 1.5rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: var(--bg-card);
-            transition: border-color 0.4s, background 0.4s, transform 0.4s;
-        }
-
-        .skill-block:hover {
-            border-color: var(--accent-dim);
-            background: var(--bg-card-hover);
-            transform: translateY(-2px);
-        }
-
-        .skill-block__title {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            font-weight: 400;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 0.8rem;
-        }
-
-        .skill-block__list {
-            font-size: 0.85rem;
-            font-weight: 300;
-            color: var(--text-dim);
-            line-height: 1.8;
-        }
-
-        /* ─── EDUCATION ─── */
-        .edu-entry {
-            margin-bottom: 1.5rem;
-        }
-
-        .edu-entry__degree {
-            font-family: var(--sans);
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--text);
-        }
-
-        .edu-entry__school {
-            font-size: 0.88rem;
-            font-weight: 300;
-            color: var(--text-dim);
-        }
-
-        .certs {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
-        }
-
-        .cert-badge {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            font-weight: 400;
-            letter-spacing: 0.08em;
-            padding: 0.4rem 0.9rem;
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            color: var(--text-dim);
-            background: var(--bg-card);
-            transition: border-color 0.3s, color 0.3s;
-        }
-
-        .cert-badge:hover {
-            border-color: var(--accent-dim);
-            color: var(--accent);
-        }
-
-        /* ─── PROJECTS ─── */
-        .project-card {
-            padding: 1.5rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: var(--bg-card);
-            margin-bottom: 1rem;
-            transition: border-color 0.4s, transform 0.4s;
-        }
-
-        .project-card:hover {
-            border-color: var(--accent-dim);
-            transform: translateY(-2px);
-        }
-
-        .project-card__name {
-            font-family: var(--sans);
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--accent);
-            margin-bottom: 0.4rem;
-        }
-
-        .project-card__desc {
-            font-size: 0.88rem;
-            font-weight: 300;
-            color: var(--text-dim);
-        }
-
-        /* ─── FOOTER ─── */
-        footer {
-            padding: 4rem 0 3rem;
-            text-align: center;
-        }
-
-        footer p {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            letter-spacing: 0.1em;
-        }
-
-        /* ─── NAV ─── */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1.2rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(10, 10, 15, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.3s;
-        }
-
-        nav.scrolled {
-            border-bottom-color: var(--border);
-        }
-
-        .nav-logo {
-            font-family: var(--serif);
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: var(--text);
-            text-decoration: none;
-            letter-spacing: 0.02em;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            font-family: var(--mono);
-            font-size: 0.68rem;
-            font-weight: 300;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        .nav-print {
-            color: var(--accent) !important;
-            border: 1px solid var(--accent-dim) !important;
-            border-radius: 100px;
-            padding: 0.35rem 1rem !important;
-            transition: background 0.3s, color 0.3s !important;
-        }
-
-        .nav-print:hover {
-            background: var(--accent) !important;
-            color: var(--bg) !important;
-        }
-
-        /* ─── RESPONSIVE ─── */
-        @media (max-width: 600px) {
-            .container { padding: 0 1.2rem; }
-            .hero__name { font-size: 2.5rem; }
-            .nav-links { gap: 1rem; }
-            .nav-links a { font-size: 0.6rem; }
-            .skills-grid { grid-template-columns: 1fr; }
-            .hero__contact { gap: 1rem; }
-        }
-
-        /* ════════════════════════════════════════════════
-           PRINT STYLESHEET — Single-page A4 CV
-           ════════════════════════════════════════════════ */
-        @media print {
-            @page {
-                size: A4;
-                margin: 10mm 12mm 8mm 12mm;
-            }
-
-            *, *::before, *::after {
-                animation: none !important;
-                transition: none !important;
-                opacity: 1 !important;
-                transform: none !important;
-                color-adjust: exact !important;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-
-            html {
-                font-size: 14px;
-            }
-
-            body {
-                background: white !important;
-                color: #1a1a1a !important;
-                font-family: 'DM Sans', Helvetica, Arial, sans-serif;
-                font-weight: 400;
-                line-height: 1.5;
-                overflow: visible;
-            }
-
-            body::before { display: none !important; }
-
-            /* Hide web-only elements */
-            nav,
-            .ambient,
-            .scroll-indicator,
-            .divider,
-            .section-label,
-            footer {
-                display: none !important;
-            }
-
-            .container {
-                max-width: 100%;
-                padding: 0;
-            }
-
-            /* ── HERO → Print Header ── */
-            .hero {
-                min-height: unset !important;
-                padding: 0 0 8px 0 !important;
-                border-bottom: 2.5px solid #0f7173;
-                margin-bottom: 10px;
-            }
-
-            .hero__label { display: none !important; }
-
-            .hero__name {
-                font-family: 'DM Sans', Helvetica, sans-serif !important;
-                font-size: 30px !important;
-                font-weight: 600 !important;
-                line-height: 1.1 !important;
-                color: #1a1a1a !important;
-                margin-bottom: 5px !important;
-                -webkit-text-fill-color: #1a1a1a !important;
-                background: none !important;
-            }
-
-            .hero__name br { display: none; }
-
-            .hero__name span {
-                background: none !important;
-                -webkit-text-fill-color: #1a1a1a !important;
-                color: #1a1a1a !important;
-                display: inline !important;
-                margin-left: 0.25em !important;
-            }
-
-            .hero__tagline {
-                font-size: 10.5px !important;
-                color: #444 !important;
-                max-width: 100% !important;
-                line-height: 1.55 !important;
-                margin-bottom: 3px !important;
-            }
-
-            .hero__contact {
-                margin-top: 6px !important;
-                gap: 14px !important;
-            }
-
-            .hero__contact a {
-                font-family: 'DM Sans', Helvetica, sans-serif !important;
-                font-size: 9.5px !important;
-                color: #555 !important;
-                border: none !important;
-                padding: 0 !important;
-                letter-spacing: 0 !important;
-                text-decoration: none !important;
-            }
-
-            .hero__contact a::after {
-                content: none;
-            }
-
-            /* ── SECTIONS ── */
-            section {
-                padding: 8px 0 3px 0 !important;
-            }
-
-            .section-title {
-                font-family: 'DM Sans', Helvetica, sans-serif !important;
-                font-size: 15px !important;
-                font-weight: 600 !important;
-                text-transform: uppercase !important;
-                letter-spacing: 0.1em !important;
-                color: #0f7173 !important;
-                margin-bottom: 7px !important;
-                padding-bottom: 3px !important;
-                border-bottom: 1px solid #ddd !important;
-            }
-
-            /* ── EXPERIENCE ── */
-            .exp-card {
-                padding: 4px 0 !important;
-                border-bottom: none !important;
-                page-break-inside: avoid;
-            }
-
-            .exp-card__header {
-                margin-bottom: 0 !important;
-            }
-
-            .exp-card__role {
-                font-size: 11.5px !important;
-                font-weight: 600 !important;
-                color: #1a1a1a !important;
-            }
-
-            .exp-card__dates {
-                font-family: 'DM Sans', Helvetica, sans-serif !important;
-                font-size: 10px !important;
-                color: #777 !important;
-            }
-
-            .exp-card__company {
-                font-family: 'DM Sans', Helvetica, sans-serif !important;
-                font-style: normal !important;
-                font-size: 10.5px !important;
-                color: #0f7173 !important;
-                margin-bottom: 3px !important;
-            }
-
-            .exp-card__bullets {
-                margin: 0;
-                padding: 0;
-            }
-
-            .exp-card__bullets li {
-                font-size: 10px !important;
-                color: #333 !important;
-                line-height: 1.5 !important;
-                margin-bottom: 1.5px !important;
-                padding-left: 12px !important;
-            }
-
-            .exp-card__bullets li::before {
-                width: 3.5px !important;
-                height: 3.5px !important;
-                top: 0.55em !important;
-                background: #0f7173 !important;
-            }
-
-            /* ── SKILLS ── */
-            .skills-grid {
-                grid-template-columns: repeat(4, 1fr) !important;
-                gap: 10px !important;
-            }
-
-            .skill-block {
-                padding: 7px 10px !important;
-                border: 1px solid #ddd !important;
-                border-radius: 4px !important;
-                background: #fafafa !important;
-                page-break-inside: avoid;
-            }
-
-            .skill-block:hover {
-                transform: none !important;
-            }
-
-            .skill-block__title {
-                font-family: 'DM Sans', Helvetica, sans-serif !important;
-                font-size: 9px !important;
-                font-weight: 600 !important;
-                color: #0f7173 !important;
-                margin-bottom: 3px !important;
-                letter-spacing: 0.08em !important;
-            }
-
-            .skill-block__list {
-                font-size: 9.5px !important;
-                line-height: 1.55 !important;
-                color: #444 !important;
-            }
-
-            /* ── EDUCATION ── */
-            .edu-entry {
-                margin-bottom: 4px !important;
-            }
-
-            .edu-entry__degree {
-                font-size: 11px !important;
-                font-weight: 600 !important;
-            }
-
-            .edu-entry__school {
-                font-size: 10px !important;
-                color: #555 !important;
-            }
-
-            .certs {
-                margin-top: 7px !important;
-                gap: 6px !important;
-            }
-
-            .cert-badge {
-                font-family: 'DM Sans', Helvetica, sans-serif !important;
-                font-size: 9px !important;
-                padding: 3px 9px !important;
-                border: 1px solid #ccc !important;
-                border-radius: 3px !important;
-                background: #f5f5f5 !important;
-                color: #333 !important;
-            }
-
-            /* ── PROJECTS ── */
-            .project-card {
-                padding: 7px 10px !important;
-                border: 1px solid #ddd !important;
-                border-radius: 4px !important;
-                background: #fafafa !important;
-                margin-bottom: 5px !important;
-            }
-
-            .project-card__name {
-                font-size: 10.5px !important;
-                font-weight: 600 !important;
-                color: #0f7173 !important;
-                margin-bottom: 2px !important;
-            }
-
-            .project-card__desc {
-                font-size: 9.5px !important;
-                color: #444 !important;
-                line-height: 1.5 !important;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nadav Cohen - Resume</title>
+<style>
+  :root {
+    --bg: #fbfcfd;
+    --surface: #f1f5f7;
+    --text: #17222b;
+    --text-soft: #46555f;
+    --text-faint: #6b7a84;
+    --accent: #0d8f7a;
+    --accent-strong: #0a6e5e;
+    --rule: #d7e0e4;
+    --chip-bg: #e8f0ee;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e1419;
+      --surface: #151d24;
+      --text: #e4ecf1;
+      --text-soft: #a7b6c0;
+      --text-faint: #7d8d97;
+      --accent: #35c9ad;
+      --accent-strong: #4dd8bf;
+      --rule: #263340;
+      --chip-bg: #1a2630;
+    }
+  }
+  @page { size: A4; margin: 0; }
+  @media print {
+    :root {
+      --bg: #ffffff;
+      --surface: #f1f5f7;
+      --text: #17222b;
+      --text-soft: #46555f;
+      --text-faint: #6b7a84;
+      --accent: #0d8f7a;
+      --accent-strong: #0a6e5e;
+      --rule: #d7e0e4;
+      --chip-bg: #e8f0ee;
+    }
+    body { background: #ffffff; }
+    .page { box-shadow: none; margin: 0; }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    font-family: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 10.2pt;
+    line-height: 1.47;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .mono {
+    font-family: "JetBrains Mono", "Cascadia Code", Consolas, "SF Mono", Menlo, monospace;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 12mm 14mm 8mm;
+    background: var(--bg);
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 4.5mm;
+    border-bottom: 1.5px solid var(--accent);
+    margin-bottom: 6mm;
+  }
+  h1 {
+    font-size: 25pt;
+    font-weight: 750;
+    letter-spacing: 0.02em;
+  }
+  h1 .dot { color: var(--accent); }
+  .contact {
+    text-align: right;
+    font-size: 9.3pt;
+    color: var(--text-soft);
+    line-height: 1.7;
+  }
+  .contact a { color: var(--text-soft); text-decoration: none; }
+  .contact a:hover { color: var(--accent); }
+  .contact .sep { color: var(--accent); margin: 0 2px; }
+
+  /* ---------- Layout ---------- */
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 62mm;
+    gap: 0 8mm;
+  }
+
+  /* ---------- Sections ---------- */
+  section { margin-bottom: 5.4mm; }
+  h2 {
+    font-size: 9pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text);
+    margin-bottom: 3.4mm;
+    padding-bottom: 1.8mm;
+    border-bottom: 1px solid var(--rule);
+  }
+  h2 .slashes { color: var(--accent); font-weight: 700; margin-right: 4px; }
+
+  /* ---------- Experience ---------- */
+  .job { margin-bottom: 4mm; }
+  .job:last-child { margin-bottom: 0; }
+  .job-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1mm;
+  }
+  .job-title { font-weight: 680; font-size: 10.6pt; }
+  .job-co { color: var(--accent-strong); font-weight: 600; }
+  .job-dates {
+    font-size: 8.4pt;
+    color: var(--text-faint);
+    white-space: nowrap;
+    padding-left: 4mm;
+  }
+  .job p { color: var(--text-soft); }
+
+  .profile p { color: var(--text-soft); font-size: 10.5pt; }
+
+  /* ---------- Sidebar ---------- */
+  .skill-group { margin-bottom: 3.8mm; }
+  .skill-label {
+    font-size: 8.2pt;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--accent-strong);
+    margin-bottom: 1.1mm;
+  }
+  .skill-items { color: var(--text-soft); font-size: 9.8pt; line-height: 1.55; }
+  .skill-items .sep { color: var(--text-faint); margin: 0 1px; }
+  .skill-items .more { font-style: italic; color: var(--text-faint); }
+
+  .edu-degree { font-weight: 680; font-size: 10.4pt; }
+  .edu-detail { color: var(--text-soft); font-size: 9.8pt; margin-top: 0.6mm; }
+  .certs { margin-top: 3.2mm; }
+  .cert-label { font-weight: 650; font-size: 9.8pt; }
+  .cert-label a { color: var(--text-faint); text-decoration: none; font-weight: 400; font-size: 8.6pt; }
+  .cert-items { color: var(--text-soft); font-size: 9.8pt; margin-top: 0.7mm; line-height: 1.55; }
+
+  .project { margin-bottom: 3.6mm; }
+  .project-name { font-weight: 680; font-size: 10.2pt; }
+  .project-name a { color: var(--text); text-decoration: none; }
+  .project-name a.link {
+    font-size: 8.2pt;
+    color: var(--accent-strong);
+    font-weight: 500;
+    margin-left: 3px;
+    text-decoration: none;
+  }
+  .project p { color: var(--text-soft); font-size: 9.8pt; margin-top: 0.5mm; }
+  .talks {
+    color: var(--text-soft);
+    font-size: 9.8pt;
+    margin-top: 3.6mm;
+    padding-top: 2.8mm;
+    border-top: 1px dashed var(--rule);
+  }
+  .talks strong { color: var(--text); font-weight: 650; }
+</style>
 </head>
 <body>
-    <div class="ambient"></div>
-    <div class="ambient ambient-2"></div>
+<div class="page">
 
-    <nav id="nav">
-        <a href="#" class="nav-logo">NC</a>
-        <div class="nav-links">
-            <a href="#experience">Experience</a>
-            <a href="#skills">Skills</a>
-            <a href="#education">Education</a>
-            <a href="#projects">Projects</a>
-            <a href="#" class="nav-print" onclick="window.print();return false;">Download CV</a>
-        </div>
-    </nav>
-
-    <div class="container">
-        <!-- HERO -->
-        <section class="hero" id="top">
-            <div class="hero__label">Cybersecurity Professional</div>
-            <h1 class="hero__name">Nadav<br><span>Cohen</span></h1>
-            <p class="hero__tagline">
-                Security operations leader with a decade of experience in threat intelligence, 
-                incident response, and building resilient defense systems across enterprise 
-                and classified environments.
-            </p>
-            <div class="hero__contact">
-                <a href="https://www.linkedin.com/in/c0h3ncyb3r/" target="_blank">LinkedIn</a>
-                <a href="https://nadavc2c.github.io/" target="_blank">GitHub</a>
-            </div>
-            <div class="scroll-indicator">
-                <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-            </div>
-        </section>
-
-        <div class="divider"></div>
-
-        <!-- EXPERIENCE -->
-        <section id="experience">
-            <div class="reveal">
-                <div class="section-label">01 — Career</div>
-                <h2 class="section-title">Experience</h2>
-            </div>
-
-            <div class="exp-card reveal">
-                <div class="exp-card__header">
-                    <div class="exp-card__role">Security Operations Center Manager</div>
-                    <div class="exp-card__dates">2025 — Present</div>
-                </div>
-                <div class="exp-card__company">Wix</div>
-                <ul class="exp-card__bullets">
-                    <li>Lead a team of 12 SOC analysts responsible for security monitoring, threat detection, and incident response across enterprise infrastructure.</li>
-                    <li>Mentor analysts on advanced threat hunting techniques and lead complex incident investigations.</li>
-                    <li>Drive intelligence-led security operations, integrating OSINT and threat intelligence feeds into detection and response workflows.</li>
-                </ul>
-            </div>
-
-            <div class="exp-card reveal">
-                <div class="exp-card__header">
-                    <div class="exp-card__role">Security Monitoring Tech Lead</div>
-                    <div class="exp-card__dates">2022 — 2025</div>
-                </div>
-                <div class="exp-card__company">Outbrain</div>
-                <ul class="exp-card__bullets">
-                    <li>Spearheaded security monitoring strategy, building automated detection and response pipelines across cloud and on-premises environments.</li>
-                    <li>Coordinated cross-team efforts embedding SecOps/AppSec into engineering workflows; developed custom SIEM detections and SOAR automations.</li>
-                    <li>Conducted proactive threat hunting, identifying indicators of compromise and translating findings into actionable security improvements.</li>
-                </ul>
-            </div>
-
-            <div class="exp-card reveal">
-                <div class="exp-card__header">
-                    <div class="exp-card__role">Cyber Security Engineer</div>
-                    <div class="exp-card__dates">2019 — 2022</div>
-                </div>
-                <div class="exp-card__company">Rafael Advanced Defense Systems</div>
-                <ul class="exp-card__bullets">
-                    <li>Implemented IT security systems within classified defense environments, performing security architecture reviews and threat modeling.</li>
-                    <li>Transitioned security solutions from proof-of-concept to production, supporting critical national defense infrastructure.</li>
-                </ul>
-            </div>
-
-            <div class="exp-card reveal">
-                <div class="exp-card__header">
-                    <div class="exp-card__role">SOC Analyst — Tier 1 Team Lead</div>
-                    <div class="exp-card__dates">2016 — 2019</div>
-                </div>
-                <div class="exp-card__company">Israeli Defense Force</div>
-                <ul class="exp-card__bullets">
-                    <li>Led a SOC Tier 1 team of 5 analysts; recognized for exceptional performance with a battalion certificate of excellence.</li>
-                    <li>Managed real-time security monitoring, triage, and escalation of incidents in a high-tempo military environment.</li>
-                </ul>
-            </div>
-        </section>
-
-        <div class="divider"></div>
-
-        <!-- SKILLS -->
-        <section id="skills">
-            <div class="reveal">
-                <div class="section-label">02 — Expertise</div>
-                <h2 class="section-title">Technical Skills</h2>
-            </div>
-
-            <div class="skills-grid">
-                <div class="skill-block reveal">
-                    <div class="skill-block__title">Threat Intelligence</div>
-                    <div class="skill-block__list">
-                        OSINT / WEBINT Research<br>
-                        APT Analysis & Tracking<br>
-                        Threat Hunting<br>
-                        IoC Identification<br>
-                        CTI Lifecycle
-                    </div>
-                </div>
-                <div class="skill-block reveal">
-                    <div class="skill-block__title">Security Operations</div>
-                    <div class="skill-block__list">
-                        SIEM (Splunk)<br>
-                        SOAR & EDR<br>
-                        Incident Response<br>
-                        Detection Engineering<br>
-                        Security Monitoring
-                    </div>
-                </div>
-                <div class="skill-block reveal">
-                    <div class="skill-block__title">Engineering</div>
-                    <div class="skill-block__list">
-                        Python & Bash<br>
-                        Automation Pipelines<br>
-                        CI/CD Security<br>
-                        Cloud Security<br>
-                        Application Security
-                    </div>
-                </div>
-                <div class="skill-block reveal">
-                    <div class="skill-block__title">Architecture</div>
-                    <div class="skill-block__list">
-                        Threat Modeling<br>
-                        Security Architecture<br>
-                        Penetration Testing<br>
-                        Reverse Engineering<br>
-                        Data Analytics
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="divider"></div>
-
-        <!-- EDUCATION -->
-        <section id="education">
-            <div class="reveal">
-                <div class="section-label">03 — Foundation</div>
-                <h2 class="section-title">Education & Certifications</h2>
-            </div>
-
-            <div class="edu-entry reveal">
-                <div class="edu-entry__degree">B.Sc. Computer Science</div>
-                <div class="edu-entry__school">Open University of Israel, 2024 — Specialization in Information Security</div>
-            </div>
-
-            <div class="certs reveal">
-                <span class="cert-badge">CISSP</span>
-                <span class="cert-badge">ISO 27001 Lead Auditor</span>
-                <span class="cert-badge">Splunk Certified ES Analyst</span>
-                <span class="cert-badge">Splunk Certified Engineer</span>
-                <span class="cert-badge">Splunk Certified Admin</span>
-            </div>
-        </section>
-
-        <div class="divider"></div>
-
-        <!-- PROJECTS -->
-        <section id="projects">
-            <div class="reveal">
-                <div class="section-label">04 — Building</div>
-                <h2 class="section-title">Projects</h2>
-            </div>
-
-            <div class="project-card reveal">
-                <div class="project-card__name">QB OpenAI ChatGPT for Splunk</div>
-                <div class="project-card__desc">
-                    Developed a Splunk add-on providing advanced OpenAI-powered querying capabilities 
-                    for security data analysis and investigation workflows.
-                </div>
-            </div>
-
-            <div class="project-card reveal">
-                <div class="project-card__name">CTF Competitions</div>
-                <div class="project-card__desc">
-                    Active participant in Capture The Flag competitions, honing offensive security 
-                    skills across web exploitation, reverse engineering, and cryptography challenges.
-                </div>
-            </div>
-        </section>
-
-        <div class="divider"></div>
-
-        <footer>
-            <p>&copy; 2026 Nadav Cohen</p>
-        </footer>
+  <header>
+    <h1>Nadav Cohen<span class="dot">.</span></h1>
+    <div class="contact">
+      <div></div>
+      <div><a href="https://www.linkedin.com/in/c0h3ncyb3r/">linkedin.com/in/c0h3ncyb3r</a><span class="sep">·</span><a href="https://github.com/nadavc2c">github.com/nadavc2c</a></div>
     </div>
+  </header>
 
-    <script>
-        // Scroll reveal
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, i) => {
-                if (entry.isIntersecting) {
-                    // Stagger siblings
-                    const siblings = entry.target.parentElement.querySelectorAll('.reveal');
-                    let delay = 0;
-                    siblings.forEach(sib => {
-                        if (sib === entry.target) {
-                            setTimeout(() => sib.classList.add('visible'), delay);
-                        }
-                    });
-                    entry.target.style.transitionDelay = '0.1s';
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  <div class="columns">
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    <!-- ============ MAIN ============ -->
+    <main>
+      <section class="profile">
+        <h2><span class="slashes mono">//</span>Profile</h2>
+        <p>SecOps tech lead and developer. I build AI-driven and agentic automation that runs security investigations end to end, and I ship the code myself. A decade of SOC leadership, detection engineering, and incident response.</p>
+      </section>
 
-        // Nav scroll effect
-        const nav = document.getElementById('nav');
-        window.addEventListener('scroll', () => {
-            nav.classList.toggle('scrolled', window.scrollY > 50);
-        });
+      <section>
+        <h2><span class="slashes mono">//</span>Experience</h2>
 
-        // Staggered reveal for skill blocks and exp cards
-        const staggerGroups = document.querySelectorAll('.skills-grid, section');
-        staggerGroups.forEach(group => {
-            const items = group.querySelectorAll('.reveal');
-            const groupObserver = new IntersectionObserver((entries) => {
-                if (entries[0].isIntersecting) {
-                    items.forEach((item, i) => {
-                        setTimeout(() => item.classList.add('visible'), i * 120);
-                    });
-                    groupObserver.unobserve(entries[0].target);
-                }
-            }, { threshold: 0.05 });
-            if (items.length > 0) groupObserver.observe(group);
-        });
-    </script>
+        <div class="job">
+          <div class="job-head">
+            <span class="job-title">CISO &amp; Lead Developer <span class="job-co">· Coinbox</span></span>
+            <span class="job-dates mono">2026 - Present</span>
+          </div>
+          <p>Run security and development for a crypto brokerage. Built the security program from scratch (risk, compliance, incident response) and lead product development, with security controls built into the code rather than bolted on.</p>
+        </div>
+
+        <div class="job">
+          <div class="job-head">
+            <span class="job-title">Security Operations Center Manager <span class="job-co">· Wix</span></span>
+            <span class="job-dates mono">2025 - 2026</span>
+          </div>
+          <p>Led a 12-analyst SOC providing global threat monitoring and response. Senior escalation point for critical alerts, owning investigations from detection through remediation, and mentoring analysts through the hardest cases.</p>
+        </div>
+
+        <div class="job">
+          <div class="job-head">
+            <span class="job-title">Security Monitoring Tech Lead <span class="job-co">· Teads (Outbrain)</span></span>
+            <span class="job-dates mono">2022 - 2025</span>
+          </div>
+          <p>Owned security monitoring across the org. Wrote custom detection logic and automations, including AI-driven and agentic workflows, built runbooks for common incident types, and pushed SecOps and AppSec practices into engineering. Ran the full Splunk environment for high alert fidelity and data coverage.</p>
+        </div>
+
+        <div class="job">
+          <div class="job-head">
+            <span class="job-title">Cyber Security Engineer <span class="job-co">· Rafael Advanced Defense Systems</span></span>
+            <span class="job-dates mono">2019 - 2022</span>
+          </div>
+          <p>Built and deployed IT security systems in classified environments, taking solutions from proof-of-concept to production.</p>
+        </div>
+
+        <div class="job">
+          <div class="job-head">
+            <span class="job-title">SOC Analyst <span class="job-co">· Israeli Defense Forces</span></span>
+            <span class="job-dates mono">2016 - 2019</span>
+          </div>
+          <p>Led a Tier 1 SOC team of 5. Awarded a battalion certificate of excellence.</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside>
+      <section>
+        <h2><span class="slashes mono">//</span>Skills</h2>
+        <div class="skill-group">
+          <div class="skill-label">Security Operations</div>
+          <div class="skill-items">Incident Response<span class="sep"> · </span>Threat Hunting<span class="sep"> · </span>Detection Engineering<span class="sep"> · </span>DFIR<span class="sep"> · </span>SIEM<span class="sep"> · </span>EDR<span class="sep"> · </span>SOAR<span class="sep"> · </span>SOC Management</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">Tools &amp; Platforms</div>
+          <div class="skill-items">Splunk<span class="sep"> · </span>CrowdStrike<span class="sep"> · </span>Wiz<span class="sep"> · </span>Palo Alto<span class="sep"> · </span>Okta<span class="sep"> · </span>AWS<span class="sep"> · </span>GCP<span class="sep"> · </span><span class="more">among others</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">Development &amp; Automation</div>
+          <div class="skill-items">Python<span class="sep"> · </span>Bash<span class="sep"> · </span>AI-Driven &amp; Agentic Automation<span class="sep"> · </span>Custom Splunk Add-on Development<span class="sep"> · </span>AppSec</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">Cloud &amp; Governance</div>
+          <div class="skill-items">Cloud &amp; SaaS Security<span class="sep"> · </span>NIST<span class="sep"> · </span>ISO 27001<span class="sep"> · </span>GRC</div>
+        </div>
+      </section>
+
+      <section>
+        <h2><span class="slashes mono">//</span>Education</h2>
+        <div class="edu-degree">B.Sc. Computer Science</div>
+        <div class="edu-detail">Open University of Israel · 2024<br>Specialized in Information Security</div>
+        <div class="certs">
+          <div class="cert-label">Certifications <a href="https://www.credly.com/users/nadavc2c">credly.com/users/nadavc2c</a></div>
+          <div class="cert-items">CISSP · ISO 27001 Lead Auditor · Splunk Certified ES Analyst, Engineer &amp; Admin</div>
+        </div>
+      </section>
+
+      <section>
+        <h2><span class="slashes mono">//</span>Projects &amp; Talks</h2>
+        <div class="project">
+          <div class="project-name"><a href="https://eternalchain.cards/">Eternalchain</a><a class="link mono" href="https://eternalchain.cards/">eternalchain.cards</a></div>
+          <p>Permanently engraves messages on the blockchain, supporting multiple protocols.</p>
+        </div>
+        <div class="project">
+          <div class="project-name"><a href="https://kotstock.com/">Kotstock</a><a class="link mono" href="https://kotstock.com/">kotstock.com</a></div>
+          <p>Extension for Interactive Brokers Trader Workstation (TWS) for trading and analyzing stocks in natural language.</p>
+        </div>
+        <div class="talks"><strong>Speaker</strong> at Splunk conferences.</div>
+      </section>
+    </aside>
+
+  </div>
+</div>
 </body>
 </html>
