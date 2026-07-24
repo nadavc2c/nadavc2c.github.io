@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nadav Cohen - Resume</title>
+<meta name="description" content="Nadav Cohen - SecOps tech lead and developer. AI-driven security automation, detection engineering, incident response.">
 <style>
   :root {
     --bg: #fbfcfd;
@@ -64,11 +65,15 @@
   }
 
   .page {
-    width: 210mm;
+    width: 100%;
+    max-width: 210mm;
     min-height: 297mm;
     margin: 0 auto;
     padding: 12mm 14mm 8mm;
     background: var(--bg);
+  }
+  @media print {
+    .page { width: 210mm; max-width: none; }
   }
 
   /* ---------- Header ---------- */
@@ -178,6 +183,57 @@
     border-top: 1px dashed var(--rule);
   }
   .talks strong { color: var(--text); font-weight: 650; }
+
+  /* ---------- Mobile (screen only; print keeps the A4 layout) ---------- */
+  @media screen and (max-width: 760px) {
+    body { font-size: 11pt; line-height: 1.55; }
+    .page {
+      min-height: auto;
+      padding: 9mm 6mm 14mm;
+    }
+    header {
+      display: block;
+      padding-bottom: 4.5mm;
+      margin-bottom: 6mm;
+    }
+    h1 { font-size: 23pt; }
+    .contact {
+      text-align: left;
+      margin-top: 2.5mm;
+      font-size: 10.2pt;
+      line-height: 1.9;
+    }
+    .contact a { color: var(--accent-strong); }
+    .columns {
+      display: block;
+    }
+    aside { margin-top: 0; }
+    section { margin-bottom: 7mm; }
+    h2 { font-size: 9.6pt; }
+    .job { margin-bottom: 5.5mm; }
+    .job-head {
+      display: block;
+      margin-bottom: 1.2mm;
+    }
+    .job-title { font-size: 11.4pt; }
+    .job-dates {
+      display: block;
+      padding-left: 0;
+      margin-top: 0.6mm;
+      font-size: 9pt;
+    }
+    .profile p { font-size: 11pt; }
+    .skill-items,
+    .edu-detail,
+    .cert-label,
+    .cert-items,
+    .project p,
+    .talks { font-size: 10.4pt; }
+    .skill-label { font-size: 8.8pt; }
+    .edu-degree { font-size: 11pt; }
+    .project-name { font-size: 10.8pt; }
+    .skill-group { margin-bottom: 4.2mm; }
+  }
 </style>
 </head>
 <body>
@@ -186,7 +242,7 @@
   <header>
     <h1>Nadav Cohen<span class="dot">.</span></h1>
     <div class="contact">
-      <div></div>
+      <div><a id="contact-wa" href="https://wa.me/nadavc2c">wa.me/nadavc2c</a><span class="sep">·</span><a href="mailto:nadavc2c@gmail.com">nadavc2c@gmail.com</a></div>
       <div><a href="https://www.linkedin.com/in/c0h3ncyb3r/">linkedin.com/in/c0h3ncyb3r</a><span class="sep">·</span><a href="https://github.com/nadavc2c">github.com/nadavc2c</a></div>
     </div>
   </header>
