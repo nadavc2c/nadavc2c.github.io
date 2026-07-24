@@ -1,43 +1,36 @@
 # Resume
 
 - `index.html` — the whole resume. This is what goes on nadavc2c.github.io.
-- `.env` — your phone number. **Never commit this.** `.gitignore` excludes it.
-- `build-pdf.js` — builds the PDF from `index.html`, injecting the phone from `.env`.
+- `phone.local.js` — your phone number. **Never commit this.** `.gitignore` excludes it.
 - `Nadav Cohen - Resume.pdf` — what you send to people. Git-ignored (it contains the number).
+
+## Making the PDF
+
+Open `index.html` from this folder in Chrome, Ctrl+P, Destination "Save as PDF", Save.
+
+Chrome applies the print stylesheet, which forces the A4 two-column layout and light
+colours no matter what your system theme is. Check it is still one page.
 
 ## How the phone number stays off the site
 
 `index.html` contains no phone number in any form. Not encoded, not hidden, not
-present. The contact line just shows `wa.me/nadavc2c`. View-source on the published
-page gives a scraper nothing, because there is nothing there.
+present. It only has this line:
 
-The number lives in exactly one place — `.env` — which is git-ignored and never
-reaches GitHub:
+    <script src="phone.local.js"></script>
 
-    PHONE_DISPLAY=+xxx-xx-xxx-xxxx
-    PHONE_TEL=+xxxxxxxxxxxx
+That file lives in this folder but is git-ignored, so it never reaches GitHub. On the
+live site the script simply 404s and the contact line keeps showing `wa.me/nadavc2c`.
+No error, nothing visible to a visitor. View-source on the published page gives a
+scraper nothing, because there is nothing there.
 
-To change the number, edit `.env`.
+Locally the file loads, swaps in your number, and that is what Ctrl+P captures.
 
-## Regenerating the PDF after editing the HTML
+To change the number, edit the one line in `phone.local.js`.
 
-    node build-pdf.js
+## If you ever clone the repo fresh
 
-(or double-click `make-pdf.bat` on Windows).
-
-The build loads `index.html`, swaps the `wa.me` link for the number from `.env`,
-and writes `Nadav Cohen - Resume.pdf` in A4 with the print stylesheet applied
-(forces the two-column layout and light colours regardless of system theme).
-Check it is still one page — the script prints a warning if it spills onto a second.
-
-First time only, install the build dependency:
-
-    npm install playwright
-    npx playwright install chromium
-
-If `.env` is missing (e.g. a fresh clone), the PDF is still built — it just shows
-the `wa.me/nadavc2c` link instead of the number. Copy `.env` back in before
-printing your real copy.
+`phone.local.js` will be missing, so the PDF you print would show the WhatsApp link
+instead of your number. Copy the file back in before printing.
 
 ## Editing content
 

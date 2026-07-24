@@ -1,7 +1,3 @@
 # Never publish the phone number, or anything that embeds it.
-.env
 phone.local.js
 Nadav Cohen - Resume.pdf
-
-# Build output / deps
-node_modules/
