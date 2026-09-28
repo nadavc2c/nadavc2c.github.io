@@ -48,8 +48,10 @@ For resume text:
 - **No resume-mill filler.** Phrases like "24/7" and "50% improvement in detection" read
   as cheap outside the Indian market, which is not this resume's audience (Nadav is not
   from India, though he holds OCI).
-- **No "from X to Y" spans** ("from detection engineering to managing a SOC"). Same
-  resume-mill register as above.
+- **Don't stack "from X to Y" spans.** One is fine; two in the same section reads as
+  resume-mill.
+- **Standard resume wording is fine** ("Skilled at", "driving", "across tiers"). What to
+  avoid is wording that sounds AI-written.
 - **Security and software engineering carry equal weight.** Neither is a side skill.
   Show the engineering through the systems built, not the act of coding ("ship the code").
 - **The profile names no employers.** That's what Experience is for.
