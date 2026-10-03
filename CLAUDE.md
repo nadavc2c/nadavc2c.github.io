@@ -47,6 +47,8 @@ For resume text:
 - **Avoid awkward word combinations and repetition.** Do not repeat words or word
   roots unnecessarily within a sentence or across adjacent sentences, such as
   "experience. Experienced". Read each paragraph as a whole before accepting edits.
+- **Use "skilled" for crafts, not experience or management.** For professional
+  responsibilities, prefer "background in" or "track record in".
 - **Use classic CV language.** Prefer established professional wording such as
   "strong background", "analytical and strategic thinking", and "results-oriented".
   Avoid casual phrasing such as "from scratch", "hardest cases", "pushed", or "ran".
@@ -63,7 +65,7 @@ For resume text:
   from India, though he holds OCI).
 - **Don't stack "from X to Y" spans.** One is fine; two in the same section reads as
   resume-mill.
-- **Standard resume wording is fine** ("Skilled at", "driving", "across tiers"). What to
+- **Standard resume wording is fine** ("strong background", "results-oriented"). What to
   avoid is wording that sounds AI-written.
 - **Position security first, software engineering second, data third, and quant last.**
   Make the software engineering background explicit and substantiate it through
