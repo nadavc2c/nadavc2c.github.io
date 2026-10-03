@@ -43,6 +43,16 @@ lacks `phone.local.js`, so a PDF printed from it shows the WhatsApp link instead
 
 For resume text:
 
+- **Mention years of experience in the profile.** Include "10+ years" explicitly.
+- **Use classic CV language.** Prefer established professional wording such as
+  "strong background", "analytical and strategic thinking", and "results-oriented".
+  Avoid casual phrasing such as "from scratch", "hardest cases", "pushed", or "ran".
+  Do not use "combining" in the profile.
+- **The profile has three sentences.** Cover professional identity and experience
+  first, a short summary of work second, and professional qualities third.
+  This sentence count is separate from the rule on rhetorical groups below.
+- **Do not use "building production" phrasing.** This includes "building production systems".
+- **Use groups of two or four, never three.** Apply this to rhetorical lists and parallel phrases.
 - **No em dashes.** Use a comma, a period, or a rewrite instead.
 - **Don't disclose too much AI.** A bit of AI is unavoidable.
 - **No resume-mill filler.** Phrases like "24/7" and "50% improvement in detection" read
@@ -52,6 +62,9 @@ For resume text:
   resume-mill.
 - **Standard resume wording is fine** ("Skilled at", "driving", "across tiers"). What to
   avoid is wording that sounds AI-written.
-- **Security and software engineering carry equal weight.** Neither is a side skill.
-  Show the engineering through the systems built, not the act of coding ("ship the code").
+- **Position security first, software engineering second, data third, and quant last.**
+  Make the software engineering background explicit and substantiate it through
+  systems and platforms developed. Keep quantitative work understated.
+- **Preserve the Skills section unless explicitly asked to change it.** Keep its
+  tool list and ordering, including Claude Code and Codex.
 - **The profile names no employers.** That's what Experience is for.
