@@ -90,6 +90,10 @@ For resume text:
   Nadav was the technical lead and owner of the organization's Splunk platform.
   He did not manage people and had a separate people manager. Describe platform
   ownership and technical responsibilities for that role.
+- **Preserve the scope and seniority of job titles when restyling them.** The Teads
+  title is "Security Monitoring Tech Lead"; expand "Tech" to "Technical" for formal
+  wording. Do not narrow it to "Splunk Technical Lead". Put Splunk ownership in
+  the role description.
 - **Preserve the Skills section unless explicitly asked to change it.** Keep its
   tool list and ordering, including Claude Code and Codex.
 - **The profile names no employers.** That's what Experience is for.
