@@ -56,12 +56,15 @@ For resume text:
   responsibilities such as team management. Avoid "proven track record" and
   "demonstrated ability" in the profile.
 - **Use classic CV language.** Prefer established professional wording such as
-  "strong background", "analytical and strategic thinking", and "results-oriented".
+  "strong background" and "analytical and strategic thinking".
   Avoid casual phrasing such as "from scratch", "hardest cases", "pushed", or "ran".
   Do not use "combining" in the profile.
 - **The profile has three sentences.** Cover professional identity and experience
   first, a short summary of work second, and professional qualities third.
   This sentence count is separate from the rule on rhetorical groups below.
+- **Personal qualities should reflect curiosity and enjoyment of solving problems.**
+  Use direct descriptive fragments for this sentence. Avoid "results-oriented"
+  wording and boilerplate introductions such as "Strengths include".
 - **Do not use "building production" phrasing.** This includes "building production systems".
 - **Use groups of two or four, never three.** Apply this to rhetorical lists and parallel phrases.
 - **No em dashes.** Use a comma, a period, or a rewrite instead.
@@ -73,7 +76,7 @@ For resume text:
   from India, though he holds OCI).
 - **Don't stack "from X to Y" spans.** One is fine; two in the same section reads as
   resume-mill.
-- **Standard resume wording is fine** ("strong background", "results-oriented"). What to
+- **Standard resume wording is fine** ("strong background", "clear communicator"). What to
   avoid is wording that sounds AI-written.
 - **Position security first, software engineering second, data third, and quant last.**
   Make software engineering explicit and substantiate it through
