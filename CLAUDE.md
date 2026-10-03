@@ -44,6 +44,9 @@ lacks `phone.local.js`, so a PDF printed from it shows the WhatsApp link instead
 For resume text:
 
 - **Mention years of experience in the profile.** Include "10+ years" explicitly.
+- **Avoid awkward word combinations and repetition.** Do not repeat words or word
+  roots unnecessarily within a sentence or across adjacent sentences, such as
+  "experience. Experienced". Read each paragraph as a whole before accepting edits.
 - **Use classic CV language.** Prefer established professional wording such as
   "strong background", "analytical and strategic thinking", and "results-oriented".
   Avoid casual phrasing such as "from scratch", "hardest cases", "pushed", or "ran".
