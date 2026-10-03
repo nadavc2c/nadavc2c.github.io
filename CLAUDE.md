@@ -86,6 +86,10 @@ For resume text:
   not include team management; that belongs to earlier SOC roles. Distinguish
   current responsibilities from previous roles in the career summary, and keep
   software engineering visible as current work.
+- **Technical leadership does not imply people management.** At Teads (Outbrain),
+  Nadav was the technical lead and owner of the organization's Splunk platform.
+  He did not manage people and had a separate people manager. Describe platform
+  ownership and technical responsibilities for that role.
 - **Preserve the Skills section unless explicitly asked to change it.** Keep its
   tool list and ordering, including Claude Code and Codex.
 - **The profile names no employers.** That's what Experience is for.
