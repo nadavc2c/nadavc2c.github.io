@@ -65,6 +65,8 @@ For resume text:
 - **Do not use "building production" phrasing.** This includes "building production systems".
 - **Use groups of two or four, never three.** Apply this to rhetorical lists and parallel phrases.
 - **No em dashes.** Use a comma, a period, or a rewrite instead.
+- **Never use "detail-oriented".** This ban also applies when drawing wording from
+  reference guides or suggesting alternatives.
 - **Don't disclose too much AI.** A bit of AI is unavoidable.
 - **No resume-mill filler.** Phrases like "24/7" and "50% improvement in detection" read
   as cheap outside the Indian market, which is not this resume's audience (Nadav is not
