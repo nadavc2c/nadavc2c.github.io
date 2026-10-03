@@ -43,12 +43,18 @@ lacks `phone.local.js`, so a PDF printed from it shows the WhatsApp link instead
 
 For resume text:
 
+- **Preferred style reference:** [Dickinson College's 2014 Alumni Resume and Reference Guide](https://www.dickinson.edu/download/downloads/id/3572/2014alumniresumereferenceguide).
+  Nadav endorses this source for classic CV language. Use it to guide future
+  wording and profile structure, subject to the specific preferences below.
 - **Mention years of experience in the profile.** Include "10+ years" explicitly.
 - **Avoid awkward word combinations and repetition.** Do not repeat words or word
   roots unnecessarily within a sentence or across adjacent sentences, such as
   "experience. Experienced". Read each paragraph as a whole before accepting edits.
 - **Use "skilled" for crafts, not experience or management.** For professional
-  responsibilities, prefer "background in" or "track record in".
+  responsibilities, describe the work and roles directly.
+  Reserve "strong background" for fields such as software engineering, not
+  responsibilities such as team management. Avoid "proven track record" and
+  "demonstrated ability" in the profile.
 - **Use classic CV language.** Prefer established professional wording such as
   "strong background", "analytical and strategic thinking", and "results-oriented".
   Avoid casual phrasing such as "from scratch", "hardest cases", "pushed", or "ran".
@@ -68,8 +74,13 @@ For resume text:
 - **Standard resume wording is fine** ("strong background", "results-oriented"). What to
   avoid is wording that sounds AI-written.
 - **Position security first, software engineering second, data third, and quant last.**
-  Make the software engineering background explicit and substantiate it through
+  Make software engineering explicit and substantiate it through
   systems and platforms developed. Keep quantitative work understated.
+- **Attribute responsibilities to the correct roles.** The current CISO & Lead
+  Developer role covers information security and platform development. It does
+  not include team management; that belongs to earlier SOC roles. Distinguish
+  current responsibilities from previous roles in the career summary, and keep
+  software engineering visible as current work.
 - **Preserve the Skills section unless explicitly asked to change it.** Keep its
   tool list and ordering, including Claude Code and Codex.
 - **The profile names no employers.** That's what Experience is for.
