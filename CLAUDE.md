@@ -28,6 +28,11 @@ The stylesheet has three layers on top of the `:root` light defaults:
 `@media screen and (max-width: 760px)` (single-column mobile — screen only, so it never
 affects the PDF).
 
+The optional `?ats=1` view uses a single-column layout for application portals.
+Both views share the same content in `index.html` and must print on one A4 page.
+Verify text extraction in the ATS view keeps Profile, Experience, Skills, Education,
+and Projects in order. The format navigation is screen-only.
+
 ## Phone number: intentionally absent from the repo
 
 `index.html` contains no phone number in any form — not encoded, not hidden. The contact

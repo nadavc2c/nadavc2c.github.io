@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nadav Cohen - Resume</title>
 <meta name="description" content="Nadav Cohen - security leader and software engineer with 10+ years of experience. Security operations and software development.">
+<script>
+  if (new URLSearchParams(window.location.search).get('ats') === '1') {
+    document.documentElement.classList.add('ats');
+  }
+</script>
 <style>
   :root {
     --bg: #fbfcfd;
@@ -184,6 +189,46 @@
   }
   .talks strong { color: var(--text); font-weight: 650; }
 
+  .resume-format {
+    max-width: 210mm;
+    margin: 12px auto;
+    padding: 0 14mm;
+    text-align: right;
+    font-size: 10pt;
+  }
+  .resume-format a { color: var(--accent-strong); }
+  .standard-format { display: none; }
+  .ats .ats-format { display: none; }
+  .ats .standard-format { display: inline; }
+  @media print {
+    .resume-format { display: none; }
+  }
+
+  /* One-column export, with the same content in document order. */
+  .ats body { font-family: Arial, sans-serif; font-size: 10pt; line-height: 1.35; }
+  .ats .page { padding: 10mm 14mm; }
+  .ats header { display: block; margin-bottom: 4mm; padding-bottom: 3mm; }
+  .ats h1 { font-size: 22pt; }
+  .ats .contact { text-align: left; font-size: 9pt; line-height: 1.5; margin-top: 1mm; }
+  .ats .columns { display: block; }
+  .ats section { margin-bottom: 2.5mm; }
+  .ats h2 { font-size: 10pt; letter-spacing: normal; margin-bottom: 1.5mm; padding-bottom: 1mm; }
+  .ats .slashes, .ats h1 .dot { display: none; }
+  .ats .profile p, .ats .job-title { font-size: 10pt; }
+  .ats .job { margin-bottom: 2mm; }
+  .ats .job-head { display: flex; margin-bottom: 0.6mm; }
+  .ats .job-dates { font-family: Arial, sans-serif; font-size: 9pt; }
+  .ats .skill-group { margin-bottom: 1mm; }
+  .ats .skill-label { display: inline; font-size: 9.5pt; text-transform: none; letter-spacing: normal; }
+  .ats .skill-label::after { content: ": "; }
+  .ats .skill-items { display: inline; font-size: 9.5pt; line-height: inherit; }
+  .ats .edu-degree, .ats .project-name { font-size: 10pt; }
+  .ats .edu-detail, .ats .cert-label, .ats .cert-items, .ats .project p, .ats .talks { font-size: 9.5pt; }
+  .ats .certs { margin-top: 1.5mm; }
+  .ats .project { margin-bottom: 1.5mm; }
+  .ats .project p { margin-top: 0.5mm; }
+  .ats .talks { margin-top: 1.5mm; padding-top: 1mm; }
+
   /* ---------- Mobile (screen only; print keeps the A4 layout) ---------- */
   @media screen and (max-width: 760px) {
     body { font-size: 11pt; line-height: 1.55; }
@@ -233,10 +278,17 @@
     .edu-degree { font-size: 11pt; }
     .project-name { font-size: 10.8pt; }
     .skill-group { margin-bottom: 4.2mm; }
+    .ats .page { padding: 9mm 6mm 14mm; }
+    .ats .job-head { display: block; }
+    .ats .job-dates { padding-left: 0; }
   }
 </style>
 </head>
 <body>
+<nav class="resume-format" aria-label="Resume format">
+  <a class="ats-format" href="?ats=1">ATS version</a>
+  <a class="standard-format" href="?">Standard version</a>
+</nav>
 <div class="page">
 
   <header>
@@ -318,7 +370,7 @@
           <div class="skill-items">Python<span class="sep"> · </span>SQL<span class="sep"> · </span>TypeScript<span class="sep"> · </span>C++<span class="sep"> · </span>Bash<span class="sep"> · </span>AI-Driven &amp; Agentic Automation<span class="sep"> · </span>Splunk Add-on Development<span class="sep"> · </span>AppSec</div>
         </div>
         <div class="skill-group">
-          <div class="skill-label">Math &amp; Data</div>
+          <div class="skill-label">Statistics &amp; Data</div>
           <div class="skill-items">Statistics<span class="sep"> · </span>Machine Learning<span class="sep"> · </span>Optimization<span class="sep"> · </span>Data Analysis</div>
         </div>
         <div class="skill-group">
@@ -340,11 +392,11 @@
       <section>
         <h2><span class="slashes mono">//</span>Projects &amp; Talks</h2>
         <div class="project">
-          <div class="project-name"><a href="https://eternalchain.cards/">Eternalchain</a><a class="link mono" href="https://eternalchain.cards/">eternalchain.cards</a></div>
+          <div class="project-name"><a href="https://eternalchain.cards/">Eternalchain</a> <a class="link mono" href="https://eternalchain.cards/">eternalchain.cards</a></div>
           <p>Blockchain application for permanent message storage across multiple protocols.</p>
         </div>
         <div class="project">
-          <div class="project-name"><a href="https://kotstock.com/">Kotstock</a><a class="link mono" href="https://kotstock.com/">kotstock.com</a></div>
+          <div class="project-name"><a href="https://kotstock.com/">Kotstock</a> <a class="link mono" href="https://kotstock.com/">kotstock.com</a></div>
           <p>Interactive Brokers Trader Workstation extension for natural language trading and stock analysis.</p>
         </div>
         <div class="talks"><strong>Speaker</strong> at Splunk conferences.</div>
@@ -353,6 +405,19 @@
 
   </div>
 </div>
+
+<script>
+  if (document.documentElement.classList.contains('ats')) {
+    document.title = 'Nadav Cohen - Resume (ATS)';
+    document.querySelectorAll('.skill-items .sep').forEach(separator => {
+      separator.textContent = ', ';
+    });
+    const textNodes = document.createTreeWalker(document.querySelector('.page'), NodeFilter.SHOW_TEXT);
+    while (textNodes.nextNode()) {
+      textNodes.currentNode.nodeValue = textNodes.currentNode.nodeValue.replace(/\u00b7/g, '|');
+    }
+  }
+</script>
 
 <!-- Local only. This file is git-ignored and does not exist on the live site,
      so visitors and scrapers get the WhatsApp link. Locally it loads and swaps

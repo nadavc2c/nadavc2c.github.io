@@ -11,6 +11,11 @@ Open `index.html` from this folder in Chrome, Ctrl+P, Destination "Save as PDF",
 Chrome applies the print stylesheet, which forces the A4 two-column layout and light
 colours no matter what your system theme is. Check it is still one page.
 
+For application portals, click **ATS version** (or open `index.html?ats=1`) before
+printing. This uses a single-column layout with the same content and ordinary text
+separators. Both versions print on one A4 page. The format links do not appear in
+either PDF. Use **Standard version** to return to the original design.
+
 ## How the phone number stays off the site
 
 `index.html` contains no phone number in any form. Not encoded, not hidden, not
