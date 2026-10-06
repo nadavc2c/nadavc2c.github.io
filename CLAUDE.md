@@ -23,15 +23,12 @@ Two hard constraints when editing:
   is light regardless of system theme. `@page { size: A4; margin: 0 }` plus
   `print-color-adjust: exact` keep the layout and colours intact. Don't remove these.
 
-The stylesheet has three layers on top of the `:root` light defaults:
-`@media (prefers-color-scheme: dark)`, `@media print` (light again, A4), and
-`@media screen and (max-width: 760px)` (single-column mobile — screen only, so it never
-affects the PDF).
-
-The optional `?ats=1` view uses a single-column layout for application portals.
-Both views share the same content in `index.html` and must print on one A4 page.
-Verify text extraction in the ATS view keeps Profile, Experience, Skills, Education,
-and Projects in order. The format navigation is screen-only.
+There is one single-column layout for the site and PDF, with ordinary HTML text and
+separators. Do not add alternate formats, query-parameter switches, or layout scripts.
+Dark mode changes screen colours; the screen-only mobile rules adjust spacing and
+font sizes. The print rules restore light colours and set A4 dimensions.
+Verify PDF text extraction keeps Profile, Experience, Skills, Education, and Projects
+in order. The latest exported PDF is `Nadav Cohen - Resume 06.pdf` in Downloads.
 
 ## Phone number: intentionally absent from the repo
 

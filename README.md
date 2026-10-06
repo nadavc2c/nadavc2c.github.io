@@ -8,13 +8,11 @@
 
 Open `index.html` from this folder in Chrome, Ctrl+P, Destination "Save as PDF", Save.
 
-Chrome applies the print stylesheet, which forces the A4 two-column layout and light
-colours no matter what your system theme is. Check it is still one page.
+The resume has one single-column layout for the site and PDF. Chrome applies the
+print stylesheet, which uses A4 and light colours regardless of your system theme.
+Check that it prints on one page and that extracted text preserves section order.
 
-For application portals, click **ATS version** (or open `index.html?ats=1`) before
-printing. This uses a single-column layout with the same content and ordinary text
-separators. Both versions print on one A4 page. The format links do not appear in
-either PDF. Use **Standard version** to return to the original design.
+The latest exported PDF is `Nadav Cohen - Resume 06.pdf` in your Downloads folder.
 
 ## How the phone number stays off the site
 
@@ -39,6 +37,6 @@ instead of your number. Copy the file back in before printing.
 
 ## Editing content
 
-Edit `index.html` directly. Mobile-only rules live in the
-`@media screen and (max-width: 760px)` block at the end of the stylesheet and do not
-affect the PDF.
+Edit `index.html` directly. Resume text and separators are ordinary HTML; there is
+no format switch or layout script. The screen-only mobile rules adjust spacing and
+font sizes without affecting the PDF.
