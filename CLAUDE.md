@@ -4,9 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Nadav Cohen's personal resume: one self-contained `index.html` (inline `<style>`, no external
-assets, no dependencies). Pushing to `main` publishes it to GitHub Pages at
-nadavc2c.github.io (`origin` is `nadavc2c/nadavc2c.github.io`).
+Nadav Cohen's personal resume: a prime `index.html` and two experimental flavors,
+`cv-variants/security.html` and `cv-variants/developer.html`. Each is self-contained
+(inline `<style>`, no external assets, no dependencies). Pushing to `main` publishes
+prime to GitHub Pages at nadavc2c.github.io (`origin` is `nadavc2c/nadavc2c.github.io`).
+The flavors are kept in the public repository for future use and must not be
+presented on the website. `_config.yml` excludes `cv-variants/` and repository
+guidance from the Jekyll site build. Do not add website links to the flavors.
 
 There is no build, no package manager, no tests, no lint. To preview, open `index.html`
 in a browser.
@@ -23,22 +27,25 @@ Two hard constraints when editing:
   is light regardless of system theme. `@page { size: A4; margin: 0 }` plus
   `print-color-adjust: exact` keep the layout and colours intact. Don't remove these.
 
-There is one single-column layout for the site and PDF, with ordinary HTML text and
-separators. Do not add alternate formats, query-parameter switches, or layout scripts.
+All three flavors use the same single-column layout for the site and PDF, with
+ordinary HTML text and separators. They are separate static documents with tailored
+profiles and experience descriptions. Do not add query-parameter switches or layout scripts.
+Keep titles, dates, contact details, and Skills consistent across the three files.
 Dark mode changes screen colours; the screen-only mobile rules adjust spacing and
 font sizes. The print rules restore light colours and set A4 dimensions.
 Verify PDF text extraction keeps Profile, Experience, Skills, Education, and Projects
-in order. The latest exported PDF is `Nadav Cohen - Resume 06.pdf` in Downloads.
+in order. The current exports are in git-ignored `output/pdf/`, one per flavor.
 
 ## Phone number: intentionally absent from the repo
 
-`index.html` contains no phone number in any form — not encoded, not hidden. The contact
+The three HTML files contain no phone number in any form — not encoded, not hidden. The contact
 link ships as `wa.me/nadavc2c`. `phone.local.js` (git-ignored) lives only on the local
-disk; it swaps the real number into `#contact-wa` at load time, which is what Ctrl+P
+disk; prime loads it as `phone.local.js` and the flavors as `../phone.local.js`.
+It swaps the real number into `#contact-wa` at load time, which is what Ctrl+P
 captures. On the published site that script 404s silently and the WhatsApp link stands.
 
 Do not put the number into `index.html`, and do not commit `phone.local.js` or
-`Nadav Cohen - Resume.pdf` (both git-ignored — the PDF embeds the number). A fresh clone
+`Nadav Cohen - Resume.pdf` or `output/pdf/` (all git-ignored — PDFs embed the number). A fresh clone
 lacks `phone.local.js`, so a PDF printed from it shows the WhatsApp link instead.
 
 ## Copywriting rules
@@ -81,6 +88,8 @@ For resume text:
 - **Standard resume wording is fine** ("strong background", "clear communicator"). What to
   avoid is wording that sounds AI-written.
 - **Position security first, software engineering second, data third, and quant last.**
+  This applies to prime. The security and developer experiments foreground their
+  respective fields while keeping the same factual history and Skills section.
   Make software engineering explicit and substantiate it through
   systems and platforms developed. Keep quantitative work understated.
 - **Attribute responsibilities to the correct roles.** The current CISO & Lead
@@ -92,6 +101,9 @@ For resume text:
   Nadav was the technical lead and owner of the organization's Splunk platform.
   He did not manage people and had a separate people manager. Describe platform
   ownership and technical responsibilities for that role.
+  Describe him as the organization's Splunk technical authority, including how
+  searches were written and what they detected. Prefer explicit search standards
+  and detection logic over "oversaw".
 - **Preserve the scope and seniority of job titles when restyling them.** The Teads
   title is "Security Monitoring Tech Lead"; expand "Tech" to "Technical" for formal
   wording. Do not narrow it to "Splunk Technical Lead". Put Splunk ownership in

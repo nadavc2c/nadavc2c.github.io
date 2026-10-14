@@ -1,3 +1,5 @@
 # Never publish the phone number, or anything that embeds it.
 phone.local.js
 Nadav Cohen - Resume.pdf
+output/pdf/
+tmp/pdfs/
