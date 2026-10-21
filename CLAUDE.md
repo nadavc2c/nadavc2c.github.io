@@ -77,6 +77,9 @@ For resume text:
 - **Do not use "building production" phrasing.** This includes "building production systems".
 - **Use groups of two or four, never three.** Apply this to rhetorical lists and parallel phrases.
 - **No em dashes.** Use a comma, a period, or a rewrite instead.
+- **Use either an acronym or its full name, never both together.** Prefer the shorter
+  recognizable form, such as AWS, GCP, CI/CD, or AppSec. Do not write a full name
+  followed by its acronym in parentheses, or the reverse.
 - **Never use "detail-oriented".** This ban also applies when drawing wording from
   reference guides or suggesting alternatives.
 - **Don't disclose too much AI.** A bit of AI is unavoidable.
@@ -110,4 +113,5 @@ For resume text:
   the role description.
 - **Preserve the Skills section unless explicitly asked to change it.** Keep its
   tool list and ordering, including Claude Code and Codex.
+  Retain the italic "among others" at the end of Tools & Platforms when expanding the list.
 - **The profile names no employers.** That's what Experience is for.
