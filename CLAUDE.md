@@ -114,4 +114,7 @@ For resume text:
 - **Preserve the Skills section unless explicitly asked to change it.** Keep its
   tool list and ordering, including Claude Code and Codex.
   Retain the italic "among others" at the end of Tools & Platforms when expanding the list.
+- **Keep skill groups compact and coherent.** Keep languages and frameworks together
+  under Software Engineering. Avoid overlapping subcategories and repeating a
+  heading in the first skill that follows it.
 - **The profile names no employers.** That's what Experience is for.
