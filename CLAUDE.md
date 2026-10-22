@@ -4,13 +4,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Nadav Cohen's personal resume: a prime `index.html` and two experimental flavors,
-`cv-variants/security.html` and `cv-variants/developer.html`. Each is self-contained
+Nadav Cohen's personal resume: the main `index.html` and a separate
+`cv-variants/security.html`. Each is self-contained
 (inline `<style>`, no external assets, no dependencies). Pushing to `main` publishes
-prime to GitHub Pages at nadavc2c.github.io (`origin` is `nadavc2c/nadavc2c.github.io`).
-The flavors are kept in the public repository for future use and must not be
+the main resume to GitHub Pages at nadavc2c.github.io (`origin` is `nadavc2c/nadavc2c.github.io`).
+The main resume is the default for applications. The security version is retained
+for a future pure CISO/security resume; work on it is currently on hold. Focus edits
+on the main resume and leave the security version alone unless explicitly requested.
+The security version is kept in the public repository for future use and must not be
 presented on the website. `_config.yml` excludes `cv-variants/` and repository
-guidance from the Jekyll site build. Do not add website links to the flavors.
+guidance from the Jekyll site build. Do not add website links to the security version.
 
 There is no build, no package manager, no tests, no lint. To preview, open `index.html`
 in a browser.
@@ -27,20 +30,21 @@ Two hard constraints when editing:
   is light regardless of system theme. `@page { size: A4; margin: 0 }` plus
   `print-color-adjust: exact` keep the layout and colours intact. Don't remove these.
 
-All three flavors use the same single-column layout for the site and PDF, with
+Both versions use the same single-column layout for the site and PDF, with
 ordinary HTML text and separators. They are separate static documents with tailored
 profiles and experience descriptions. Do not add query-parameter switches or layout scripts.
-Keep titles, dates, contact details, and Skills consistent across the three files.
+When work on the security version resumes, reconcile titles, dates, contact details,
+Skills, and shared layout changes with the main resume.
 Dark mode changes screen colours; the screen-only mobile rules adjust spacing and
 font sizes. The print rules restore light colours and set A4 dimensions.
 Verify PDF text extraction keeps Profile, Experience, Skills, Education, and Projects
-in order. The current exports are in git-ignored `output/pdf/`, one per flavor.
+in order. Save local exports in git-ignored `output/pdf/`.
 
 ## Phone number: intentionally absent from the repo
 
-The three HTML files contain no phone number in any form — not encoded, not hidden. The contact
+Both HTML files contain no phone number in any form — not encoded, not hidden. The contact
 link ships as `wa.me/nadavc2c`. `phone.local.js` (git-ignored) lives only on the local
-disk; prime loads it as `phone.local.js` and the flavors as `../phone.local.js`.
+disk; the main resume loads it as `phone.local.js` and the security version as `../phone.local.js`.
 It swaps the real number into `#contact-wa` at load time, which is what Ctrl+P
 captures. On the published site that script 404s silently and the WhatsApp link stands.
 
@@ -85,13 +89,16 @@ For resume text:
   from India, though he holds OCI).
 - **Don't stack "from X to Y" spans.** One is fine; two in the same section reads as
   resume-mill.
-- **Standard resume wording is fine** ("strong background", "clear communicator"). What to
-  avoid is wording that sounds AI-written.
+- **Conventional resume language is the goal** ("strong background", "clear communicator").
+  Do not criticize or suggest changing wording merely because it is conventional
+  or commonly used in CVs. What to avoid is wording that sounds AI-written.
 - **Position security first, software engineering second, data third, and quant last.**
-  This applies to prime. The security and developer experiments foreground their
-  respective fields while keeping the same factual history and Skills section.
+  This applies to the main resume. The separate security version is reserved for
+  pure CISO/security positioning when work on it resumes, with the same factual history.
   Make software engineering explicit and substantiate it through
   systems and platforms developed. Keep quantitative work understated.
+  In the Coinbox description, lead with software engineering and platform development.
+  Omit pricing and risk models for now.
 - **Attribute responsibilities to the correct roles.** The current CISO & Lead
   Developer role covers information security and platform development. It does
   not include team management; that belongs to earlier SOC roles. Distinguish
@@ -110,4 +117,6 @@ For resume text:
   the role description.
 - **Preserve the Skills section unless explicitly asked to change it.** Keep its
   tool list and ordering, including Claude Code and Codex.
+- **Leave "among others" alone.** Preserve this phrase in Tools & Platforms.
+  Do not remove, rephrase, or suggest removing it unless Nadav explicitly asks.
 - **The profile names no employers.** That's what Experience is for.

@@ -1,4 +1,4 @@
-# Keep reusable CV flavors and repository guidance out of GitHub Pages.
+# Keep the separate security CV and repository guidance out of GitHub Pages.
 exclude:
   - cv-variants
   - README.md
